@@ -1,0 +1,137 @@
+{
+  "student_name": "Sridhar Gude",
+  "sid": "17165640",
+  "pool_reference": "No. 33 (Dataset Catalogue)",
+  "tuning_metric": "areaUnderPR",
+  "cv_folds": 3,
+  "train_fraction": 0.03,
+  "test_fraction": 0.3,
+  "train_rows": 421651,
+  "test_rows": 1054687,
+  "feature_vector_length": 551,
+  "cash_share_train_pct": 14.89,
+  "families": [
+    "Free choice: tree boosting",
+    "Linear / generalised linear",
+    "Neural network",
+    "Tree-based ensemble (bagging)"
+  ],
+  "algorithms": [
+    {
+      "name": "LogisticRegression",
+      "family": "Linear / generalised linear",
+      "param_grid": "regParam in {0, 0.01, 0.1}",
+      "grid_size": 3,
+      "cv_folds": 3,
+      "cv_pr_auc_per_setting": [
+        0.2567,
+        0.2213,
+        0.2178
+      ],
+      "best_params": {
+        "regParam": 0.0
+      },
+      "training_seconds": 52.7,
+      "metrics": {
+        "accuracy": 0.8512,
+        "precision_cash": 0.5346,
+        "recall_cash": 0.0361,
+        "f1_cash": 0.0676,
+        "roc_auc": 0.6339,
+        "pr_auc": 0.2551,
+        "balanced_accuracy": 0.5153,
+        "scoring_seconds": 18.2
+      }
+    },
+    {
+      "name": "RandomForest",
+      "family": "Tree-based ensemble (bagging)",
+      "param_grid": "maxDepth in {6, 10}; 30 trees",
+      "grid_size": 2,
+      "cv_folds": 3,
+      "cv_pr_auc_per_setting": [
+        0.2253,
+        0.2367
+      ],
+      "best_params": {
+        "maxDepth": 10
+      },
+      "training_seconds": 111.8,
+      "metrics": {
+        "accuracy": 0.8505,
+        "precision_cash": 0.0,
+        "recall_cash": 0.0,
+        "f1_cash": 0.0,
+        "roc_auc": 0.618,
+        "pr_auc": 0.2393,
+        "balanced_accuracy": 0.5,
+        "scoring_seconds": 9.1
+      }
+    },
+    {
+      "name": "MultilayerPerceptron",
+      "family": "Neural network",
+      "param_grid": "hidden units in {16, 32}",
+      "grid_size": 2,
+      "cv_folds": 3,
+      "cv_pr_auc_per_setting": [
+        0.2207,
+        0.2152
+      ],
+      "best_params": {
+        "layers": [
+          551,
+          16,
+          2
+        ]
+      },
+      "training_seconds": 617.1,
+      "metrics": {
+        "accuracy": 0.8505,
+        "precision_cash": 0.4921,
+        "recall_cash": 0.001,
+        "f1_cash": 0.002,
+        "roc_auc": 0.5981,
+        "pr_auc": 0.219,
+        "balanced_accuracy": 0.5004,
+        "scoring_seconds": 18.1
+      }
+    },
+    {
+      "name": "GBTClassifier",
+      "family": "Free choice: tree boosting",
+      "param_grid": "maxDepth in {3, 5}; 20 rounds",
+      "grid_size": 2,
+      "cv_folds": 3,
+      "cv_pr_auc_per_setting": [
+        0.232,
+        0.2418
+      ],
+      "best_params": {
+        "maxDepth": 5
+      },
+      "training_seconds": 237.1,
+      "metrics": {
+        "accuracy": 0.8508,
+        "precision_cash": 0.6814,
+        "recall_cash": 0.0028,
+        "f1_cash": 0.0056,
+        "roc_auc": 0.6239,
+        "pr_auc": 0.2427,
+        "balanced_accuracy": 0.5013,
+        "scoring_seconds": 4.8
+      }
+    }
+  ],
+  "cluster_config": {
+    "spark_version": "4.0.4",
+    "master": "local[*]",
+    "cores": 4,
+    "driver_memory": "8g",
+    "shuffle_partitions": "64",
+    "note": "local mode: one JVM, the driver also runs the tasks (no separate executors)"
+  },
+  "timings_seconds": {
+    "prepare_model_frames_seconds": 14.5
+  }
+}
